@@ -1,0 +1,26 @@
+train_number,train_name,source,destination,departure_time,arrival_time,total_seats,zone,type,distance,duration
+12002,Shatabdi Express,New Delhi,Mumbai Central,06:00,14:30,300,Western,Superfast,1384,8h 30m
+12951,Mumbai Rajdhani,Mumbai Central,New Delhi,17:55,08:35,350,Western,Rajdhani,1384,14h 40m
+12801,Purushottam Express,New Delhi,Puri,21:55,09:30,1200,East Coast,Express,1441,11h 35m
+12621,Tamil Nadu Express,New Delhi,Chennai Central,22:30,04:45,1200,Southern,Express,2180,30h 15m
+12301,Howrah Rajdhani,New Delhi,Howrah Junction,17:00,10:05,350,Eastern,Rajdhani,1441,17h 05m
+16031,Andaman Express,Chennai Central,Jammu Tawi,06:15,22:45,1400,Southern,Express,2649,40h 30m
+12423,Dibrugarh Rajdhani,New Delhi,Dibrugarh,15:05,13:15,350,Northeast Frontier,Rajdhani,2421,46h 10m
+12002,New Delhi Shatabdi,New Delhi,Kalka,07:40,11:45,522,Northern,Shatabdi,300,4h 05m
+12004,Lucknow Swarn Shatabdi,New Delhi,Lucknow,06:10,12:25,522,Northern,Shatabdi,500,6h 15m
+12019,Howrah Shatabdi,Howrah Junction,New Delhi,06:00,18:20,522,Eastern,Shatabdi,1441,12h 20m
+12009,Mumbai Shatabdi,Mumbai Central,Ahmedabad,06:05,13:40,522,Western,Shatabdi,492,7h 35m
+12051,Jan Shatabdi,New Delhi,Dehradun,06:50,12:45,1200,Northern,Jan Shatabdi,248,5h 55m
+12015,Ajmer Shatabdi,New Delhi,Ajmer,06:15,12:50,522,North Western,Shatabdi,445,6h 35m
+12022,Bhopal Shatabdi,New Delhi,Bhopal,08:25,14:05,522,West Central,Shatabdi,707,5h 40m
+12054,Jan Shatabdi,New Delhi,Lucknow,15:50,22:20,1200,Northern,Jan Shatabdi,500,6h 30m
+12037,Lucknow Mail,Howrah Junction,Lucknow,22:05,16:00,1400,Eastern,Mail,984,17h 55m
+12270,Sampark Kranti,Howrah Junction,New Delhi,12:25,06:45,1200,Eastern,Sampark Kranti,1441,18h 20m
+12306,Kolkata Rajdhani,Howrah Junction,New Delhi,16:55,10:05,350,Eastern,Rajdhani,1441,17h 10m
+12432,Flying Ranee,Mumbai Central,Surat,17:25,21:35,1200,Western,Express,263,4h 10m
+12223,LTT Rajdhani,Lokmanya Tilak Terminus,New Delhi,15:15,08:35,350,Central,Rajdhani,1366,17h 20m
+12217,Sampark Kranti,Pune Junction,Hazrat Nizamuddin,11:10,12:25,1200,Central,Sampark Kranti,1210,25h 15m
+12628,Karnataka Express,New Delhi,Bangalore City Junction,21:45,04:30,1200,South Western,Express,2444,30h 45m
+12668,Chennai Express,Howrah Junction,Chennai Central,14:25,19:15,1200,Southern,Express,1662,28h 50m
+12840,Howrah Mail,Mumbai Central,Howrah Junction,21:05,06:35,1200,Eastern,Mail,1968,33h 30m
+12313,Sealdah Rajdhani,Sealdah,New Delhi,17:35,09:55,350,Eastern,Rajdhani,1458,16h 20m

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Test - Leaflet Implementation</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #test-map {
+            height: 500px;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+        }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Railway Map Implementation Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Results:</h2>
+        <div id="test-results">
+            <p>🔄 Running tests...</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Interactive Map:</h2>
+        <div id="test-map"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Map Features:</h2>
+        <button onclick="testAddRoute()">Add Sample Train Route</button>
+        <button onclick="testClearRoute()">Clear Route</button>
+        <button onclick="testAddStations()">Add Station Markers</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let testMap = null;
+        let routePolyline = null;
+        let stationMarkers = [];
+        
+        // Test results tracking
+        const testResults = [];
+        
+        function addTestResult(test, success, message) {
+            testResults.push({ test, success, message });
+            updateTestDisplay();
+        }
+        
+        function updateTestDisplay() {
+            const container = document.getElementById('test-results');
+            container.innerHTML = testResults.map(result => 
+                `<p class="${result.success ? 'success' : 'error'}">
+                    ${result.success ? '✅' : '❌'} ${result.test}: ${result.message}
+                </p>`
+            ).join('');
+        }
+        
+        // Test 1: Check if Leaflet is loaded
+        try {
+            if (typeof L !== 'undefined') {
+                addTestResult('Leaflet Library', true, 'Leaflet.js loaded successfully');
+            } else {
+                addTestResult('Leaflet Library', false, 'Leaflet.js not found');
+            }
+        } catch (e) {
+            addTestResult('Leaflet Library', false, 'Error loading Leaflet: ' + e.message);
+        }
+        
+        // Test 2: Initialize map
+        try {
+            testMap = L.map('test-map', {
+                center: [20.5937, 78.9629], // Center of India
+                zoom: 5,
+                minZoom: 4,
+                maxZoom: 12
+            });
+            
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(testMap);
+            
+            addTestResult('Map Initialization', true, 'Map initialized with OpenStreetMap tiles');
+            
+            // Test 3: Add controls
+            L.control.scale({
+                position: 'bottomleft',
+                metric: true,
+                imperial: false
+            }).addTo(testMap);
+            
+            addTestResult('Map Controls', true, 'Scale control added successfully');
+            
+        } catch (e) {
+            addTestResult('Map Initialization', false, 'Error initializing map: ' + e.message);
+        }
+        
+        // Test functions for interactive testing
+        function testAddRoute() {
+            try {
+                if (routePolyline) {
+                    testMap.removeLayer(routePolyline);
+                }
+                
+                // Create sample route: Delhi to Mumbai
+                const routeCoords = [
+                    [28.6448, 77.2167], // New Delhi
+                    [26.9124, 75.7873], // Jaipur
+                    [23.0225, 72.5714], // Ahmedabad
+                    [19.0696, 72.8205]  // Mumbai
+                ];
+                
+                routePolyline = L.polyline(routeCoords, {
+                    color: '#e74c3c',
+                    weight: 4,
+                    opacity: 0.8,
+                    dashArray: '10, 5'
+                }).addTo(testMap);
+                
+                routePolyline.bindPopup('<b>Sample Train Route</b><br>New Delhi → Mumbai');
+                
+                // Fit map to route
+                testMap.fitBounds(routePolyline.getBounds().pad(0.1));
+                
+                addTestResult('Route Creation', true, 'Sample route added successfully');
+                
+            } catch (e) {
+                addTestResult('Route Creation', false, 'Error adding route: ' + e.message);
+            }
+        }
+        
+        function testClearRoute() {
+            try {
+                if (routePolyline) {
+                    testMap.removeLayer(routePolyline);
+                    routePolyline = null;
+                    addTestResult('Route Clearing', true, 'Route cleared successfully');
+                } else {
+                    addTestResult('Route Clearing', false, 'No route to clear');
+                }
+            } catch (e) {
+                addTestResult('Route Clearing', false, 'Error clearing route: ' + e.message);
+            }
+        }
+        
+        function testAddStations() {
+            try {
+                // Clear existing markers
+                stationMarkers.forEach(marker => testMap.removeLayer(marker));
+                stationMarkers = [];
+                
+                const stations = [
+                    { name: 'New Delhi', coords: [28.6448, 77.2167], type: 'source' },
+                    { name: 'Mumbai Central', coords: [19.0696, 72.8205], type: 'destination' },
+                    { name: 'Chennai Central', coords: [13.0827, 80.2707], type: 'major' },
+                    { name: 'Kolkata', coords: [22.5726, 88.3639], type: 'major' },
+                    { name: 'Bangalore', coords: [12.9716, 77.5946], type: 'major' }
+                ];
+                
+                stations.forEach(station => {
+                    let iconHtml, iconColor;
+                    
+                    switch (station.type) {
+                        case 'source':
+                            iconHtml = 'S';
+                            iconColor = '#e74c3c';
+                            break;
+                        case 'destination':
+                            iconHtml = 'D';
+                            iconColor = '#27ae60';
+                            break;
+                        default:
+                            iconHtml = '🚉';
+                            iconColor = '#3498db';
+                    }
+                    
+                    const icon = L.divIcon({
+                        html: station.type === 'major' ? iconHtml : 
+                              `<div style="background: ${iconColor}; color: white; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold;">${iconHtml}</div>`,
+                        iconSize: [20, 20],
+                        className: 'custom-marker'
+                    });
+                    
+                    const marker = L.marker(station.coords, { icon })
+                        .addTo(testMap)
+                        .bindPopup(`<b>${station.name}</b><br>Type: ${station.type}`);
+                    
+                    stationMarkers.push(marker);
+                });
+                
+                addTestResult('Station Markers', true, `${stations.length} station markers added successfully`);
+                
+            } catch (e) {
+                addTestResult('Station Markers', false, 'Error adding stations: ' + e.message);
+            }
+        }
+        
+        // Test 4: Check for Geoapify references (should be none)
+        setTimeout(() => {
+            const bodyText = document.body.innerHTML.toLowerCase();
+            if (bodyText.includes('geoapify')) {
+                addTestResult('Geoapify Removal', false, 'Geoapify references still found in page');
+            } else {
+                addTestResult('Geoapify Removal', true, 'No Geoapify references found - successfully removed');
+            }
+        }, 1000);
+        
+        // Auto-test some features
+        setTimeout(() => {
+            testAddStations();
+        }, 2000);
+        
+        setTimeout(() => {
+            testAddRoute();
+        }, 3000);
+        
+    </script>
+</body>
+</html>

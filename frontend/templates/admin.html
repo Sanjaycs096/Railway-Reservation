@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Console - Railway Reservation & Tracking Platform</title>
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2><i class="fas fa-train"></i> RailConnect</h2>
+            <p>Admin Console</p>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li class="active"><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#trains"><i class="fas fa-subway"></i> Trains</a></li>
+                <li><a href="#bookings"><i class="fas fa-ticket-alt"></i> Bookings</a></li>
+                <li><a href="#tracking"><i class="fas fa-map-marker-alt"></i> Tracking</a></li>
+                <li><a href="#alerts"><i class="fas fa-bell"></i> Alerts</a></li>
+                <li><a href="#users"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="toggle-sidebar">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="user-info">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user">
+                    <img src="../static/images/admin-avatar.png" alt="Admin" class="avatar">
+                    <span>Admin User</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="section-header">
+                <h2>Dashboard</h2>
+                <p>Overview of the system</p>
+            </div>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-train"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Trains</h3>
+                        <p class="stat-value">48</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 5% from last month</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Bookings Today</h3>
+                        <p class="stat-value">156</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 12% from yesterday</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Users</h3>
+                        <p class="stat-value">2,547</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 8% from last month</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active Alerts</h3>
+                        <p class="stat-value">7</p>
+                        <p class="stat-change negative"><i class="fas fa-arrow-down"></i> 3% from yesterday</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-charts">
+                <div class="chart-container">
+                    <h3>Booking Statistics</h3>
+                    <canvas id="bookingChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Train Occupancy</h3>
+                    <canvas id="occupancyChart"></canvas>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p><strong>New Booking</strong> - Ticket booked for Express 12345</p>
+                            <p class="activity-time">5 minutes ago</p>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p><strong>Alert Created</strong> - Delay alert for Superfast 54321</p>
+                            <p class="activity-time">15 minutes ago</p>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p><strong>New User</strong> - John Doe registered</p>
+                            <p class="activity-time">1 hour ago</p>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div class="activity-details">
+                            <p><strong>Train Added</strong> - New train Express 67890 added</p>
+                            <p class="activity-time">2 hours ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trains Section -->
+        <section id="trains" class="section">
+            <div class="section-header">
+                <h2>Trains Management</h2>
+                <button class="btn btn-primary" id="addTrainBtn"><i class="fas fa-plus"></i> Add Train</button>
+            </div>
+            <div class="filter-bar">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search trains...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="statusFilter">
+                        <option value="all">All Statuses</option>
+                        <option value="scheduled">Scheduled</option>
+                        <option value="delayed">Delayed</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="data-table">
+                <table id="trainsTable">
+                    <thead>
+                        <tr>
+                            <th>Train No.</th>
+                            <th>Name</th>
+                            <th>Source</th>
+                            <th>Destination</th>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12345</td>
+                            <td>Delhi Express</td>
+                            <td>Delhi</td>
+                            <td>Mumbai</td>
+                            <td>08:00 AM</td>
+                            <td>10:30 PM</td>
+                            <td><span class="status scheduled">Scheduled</span></td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon"><i class="fas fa-bell"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>54321</td>
+                            <td>Mumbai Superfast</td>
+                            <td>Mumbai</td>
+                            <td>Kolkata</td>
+                            <td>09:30 AM</td>
+                            <td>11:45 PM</td>
+                            <td><span class="status delayed">Delayed</span></td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon"><i class="fas fa-bell"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>67890</td>
+                            <td>Chennai Mail</td>
+                            <td>Chennai</td>
+                            <td>Delhi</td>
+                            <td>10:15 AM</td>
+                            <td>08:30 AM</td>
+                            <td><span class="status cancelled">Cancelled</span></td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon"><i class="fas fa-bell"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Bookings Section -->
+        <section id="bookings" class="section">
+            <div class="section-header">
+                <h2>Bookings Management</h2>
+            </div>
+            <div class="filter-bar">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search bookings...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="bookingStatusFilter">
+                        <option value="all">All Statuses</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <input type="date" id="bookingDateFilter">
+                </div>
+            </div>
+            <div class="data-table">
+                <table id="bookingsTable">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>User</th>
+                            <th>Train</th>
+                            <th>Date</th>
+                            <th>Seats</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>BK12345</td>
+                            <td>John Doe</td>
+                            <td>Delhi Express (12345)</td>
+                            <td>2023-10-15</td>
+                            <td>A1, A2, A3</td>
+                            <td>₹1,500</td>
+                            <td><span class="status confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-times"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>BK54321</td>
+                            <td>Jane Smith</td>
+                            <td>Mumbai Superfast (54321)</td>
+                            <td>2023-10-16</td>
+                            <td>B4, B5</td>
+                            <td>₹1,200</td>
+                            <td><span class="status cancelled">Cancelled</span></td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-times"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>BK67890</td>
+                            <td>Robert Johnson</td>
+                            <td>Chennai Mail (67890)</td>
+                            <td>2023-10-17</td>
+                            <td>C1, C2, C3, C4</td>
+                            <td>₹2,000</td>
+                            <td><span class="status confirmed">Confirmed</span></td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-times"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Tracking Section -->
+        <section id="tracking" class="section">
+            <div class="section-header">
+                <h2>Train Tracking</h2>
+            </div>
+            <div class="filter-bar">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search train number...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="tracking-map">
+                <div id="map" class="map-container">
+                    <!-- Map will be displayed here -->
+                    <div class="map-placeholder">Map Loading...</div>
+                </div>
+            </div>
+            <div class="tracking-list">
+                <h3>Active Trains</h3>
+                <div class="data-table">
+                    <table id="activeTrainsTable">
+                        <thead>
+                            <tr>
+                                <th>Train No.</th>
+                                <th>Name</th>
+                                <th>Current Location</th>
+                                <th>Next Station</th>
+                                <th>Status</th>
+                                <th>Delay</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12345</td>
+                                <td>Delhi Express</td>
+                                <td>Jaipur Junction</td>
+                                <td>Ahmedabad</td>
+                                <td><span class="status on-time">On Time</span></td>
+                                <td>0 min</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-bell"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>54321</td>
+                                <td>Mumbai Superfast</td>
+                                <td>Nagpur</td>
+                                <td>Raipur</td>
+                                <td><span class="status delayed">Delayed</span></td>
+                                <td>45 min</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon"><i class="fas fa-bell"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="section">
+            <div class="section-header">
+                <h2>Alerts Management</h2>
+                <button class="btn btn-primary" id="createAlertBtn"><i class="fas fa-plus"></i> Create Alert</button>
+            </div>
+            <div class="filter-bar">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search alerts...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="alertTypeFilter">
+                        <option value="all">All Types</option>
+                        <option value="delay">Delay</option>
+                        <option value="cancellation">Cancellation</option>
+                        <option value="platform_change">Platform Change</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                </div>
+            </div>
+            <div class="data-table">
+                <table id="alertsTable">
+                    <thead>
+                        <tr>
+                            <th>Alert ID</th>
+                            <th>Message</th>
+                            <th>Type</th>
+                            <th>Train</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AL12345</td>
+                            <td>Train delayed by 45 minutes due to technical issues</td>
+                            <td><span class="alert-type delay">Delay</span></td>
+                            <td>Mumbai Superfast (54321)</td>
+                            <td>2023-10-15 09:30 AM</td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon"><i class="fas fa-paper-plane"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>AL54321</td>
+                            <td>Train cancelled due to severe weather conditions</td>
+                            <td><span class="alert-type cancellation">Cancellation</span></td>
+                            <td>Chennai Mail (67890)</td>
+                            <td>2023-10-15 10:15 AM</td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon"><i class="fas fa-paper-plane"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>AL67890</td>
+                            <td>Platform changed from 3 to 5</td>
+                            <td><span class="alert-type platform_change">Platform Change</span></td>
+                            <td>Delhi Express (12345)</td>
+                            <td>2023-10-15 11:00 AM</td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                                <button class="btn-icon"><i class="fas fa-paper-plane"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Users Section -->
+        <section id="users" class="section">
+            <div class="section-header">
+                <h2>Users Management</h2>
+                <button class="btn btn-primary" id="addUserBtn"><i class="fas fa-plus"></i> Add User</button>
+            </div>
+            <div class="filter-bar">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search users...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-options">
+                    <select id="userRoleFilter">
+                        <option value="all">All Roles</option>
+                        <option value="passenger">Passenger</option>
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </div>
+            </div>
+            <div class="data-table">
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Registered On</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>U12345</td>
+                            <td>John Doe</td>
+                            <td>john.doe@example.com</td>
+                            <td><span class="role passenger">Passenger</span></td>
+                            <td>2023-09-15</td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>U54321</td>
+                            <td>Jane Smith</td>
+                            <td>jane.smith@example.com</td>
+                            <td><span class="role passenger">Passenger</span></td>
+                            <td>2023-09-20</td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>U67890</td>
+                            <td>Admin User</td>
+                            <td>admin@railconnect.com</td>
+                            <td><span class="role admin">Admin</span></td>
+                            <td>2023-08-01</td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>U98765</td>
+                            <td>Staff User</td>
+                            <td>staff@railconnect.com</td>
+                            <td><span class="role staff">Staff</span></td>
+                            <td>2023-08-15</td>
+                            <td>
+                                <button class="btn-icon"><i class="fas fa-eye"></i></button>
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn-page active">1</button>
+                <button class="btn-page">2</button>
+                <button class="btn-page">3</button>
+                <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settings" class="section">
+            <div class="section-header">
+                <h2>System Settings</h2>
+            </div>
+            <div class="settings-container">
+                <div class="settings-card">
+                    <h3>General Settings</h3>
+                    <form id="generalSettingsForm">
+                        <div class="form-group">
+                            <label for="siteName">Site Name</label>
+                            <input type="text" id="siteName" value="RailConnect">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Contact Email</label>
+                            <input type="email" id="contactEmail" value="info@railconnect.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Contact Phone</label>
+                            <input type="text" id="contactPhone" value="+1 (123) 456-7890">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+                <div class="settings-card">
+                    <h3>Notification Settings</h3>
+                    <form id="notificationSettingsForm">
+                        <div class="form-group">
+                            <label>Email Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <label for="emailNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>SMS Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="smsNotifications" checked>
+                                <label for="smsNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Push Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="pushNotifications" checked>
+                                <label for="pushNotifications"></label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+                <div class="settings-card">
+                    <h3>Security Settings</h3>
+                    <form id="securitySettingsForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmNewPassword">Confirm New Password</label>
+                            <input type="password" id="confirmNewPassword">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Add Train Modal -->
+    <div id="addTrainModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Train</h2>
+            <form id="addTrainForm">
+                <div class="form-group">
+                    <label for="trainNumber">Train Number</label>
+                    <input type="text" id="trainNumber" placeholder="Enter train number">
+                </div>
+                <div class="form-group">
+                    <label for="trainName">Train Name</label>
+                    <input type="text" id="trainName" placeholder="Enter train name">
+                </div>
+                <div class="form-group">
+                    <label for="trainSource">Source</label>
+                    <input type="text" id="trainSource" placeholder="Enter source station">
+                </div>
+                <div class="form-group">
+                    <label for="trainDestination">Destination</label>
+                    <input type="text" id="trainDestination" placeholder="Enter destination station">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="departureTime">Departure Time</label>
+                        <input type="time" id="departureTime">
+                    </div>
+                    <div class="form-group">
+                        <label for="arrivalTime">Arrival Time</label>
+                        <input type="time" id="arrivalTime">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="totalSeats">Total Seats</label>
+                    <input type="number" id="totalSeats" placeholder="Enter total seats">
+                </div>
+                <div class="form-group">
+                    <label for="trainStatus">Status</label>
+                    <select id="trainStatus">
+                        <option value="scheduled">Scheduled</option>
+                        <option value="delayed">Delayed</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Train</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Alert Modal -->
+    <div id="createAlertModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Alert</h2>
+            <form id="createAlertForm">
+                <div class="form-group">
+                    <label for="alertMessage">Alert Message</label>
+                    <textarea id="alertMessage" placeholder="Enter alert message"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="alertType">Alert Type</label>
+                    <select id="alertType">
+                        <option value="delay">Delay</option>
+                        <option value="cancellation">Cancellation</option>
+                        <option value="platform_change">Platform Change</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="alertTrain">Train (Optional)</label>
+                    <select id="alertTrain">
+                        <option value="">Select Train</option>
+                        <option value="12345">Delhi Express (12345)</option>
+                        <option value="54321">Mumbai Superfast (54321)</option>
+                        <option value="67890">Chennai Mail (67890)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Send To</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="sendToApp" checked>
+                            <label for="sendToApp">Mobile/Web App</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="sendToDisplay" checked>
+                            <label for="sendToDisplay">Station Displays</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="sendToPlatform" checked>
+                            <label for="sendToPlatform">Platform Alert System</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Alert</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
+  <!-- Background Rectangle -->
+  <rect width="200" height="60" rx="10" fill="#2c3e50" />
+  
+  <!-- Train Icon -->
+  <g transform="translate(20, 15) scale(0.8)">
+    <!-- Train Body -->
+    <rect x="5" y="10" width="40" height="25" rx="5" fill="#3498db" />
+    
+    <!-- Train Front -->
+    <rect x="45" y="15" width="10" height="20" rx="2" fill="#3498db" />
+    
+    <!-- Windows -->
+    <rect x="10" y="15" width="6" height="6" rx="1" fill="#ecf0f1" />
+    <rect x="20" y="15" width="6" height="6" rx="1" fill="#ecf0f1" />
+    <rect x="30" y="15" width="6" height="6" rx="1" fill="#ecf0f1" />
+    
+    <!-- Wheels -->
+    <circle cx="15" cy="35" r="5" fill="#e74c3c" />
+    <circle cx="35" cy="35" r="5" fill="#e74c3c" />
+    <circle cx="15" cy="35" r="2" fill="#2c3e50" />
+    <circle cx="35" cy="35" r="2" fill="#2c3e50" />
+    
+    <!-- Smoke -->
+    <circle cx="50" cy="10" r="2" fill="#ecf0f1" opacity="0.8" />
+    <circle cx="55" cy="8" r="3" fill="#ecf0f1" opacity="0.6" />
+    <circle cx="61" cy="6" r="4" fill="#ecf0f1" opacity="0.4" />
+  </g>
+  
+  <!-- Railway Tracks -->
+  <line x1="20" y1="45" x2="70" y2="45" stroke="#e74c3c" stroke-width="3" />
+  <line x1="20" y1="45" x2="70" y2="45" stroke-dasharray="5,5" stroke="#ecf0f1" stroke-width="1" />
+  
+  <!-- Text -->
+  <text x="80" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ecf0f1">Railway</text>
+  <text x="80" y="45" font-family="Arial, sans-serif" font-size="12" fill="#3498db">Reservation & Tracking</text>
+</svg>

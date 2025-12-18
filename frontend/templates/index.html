@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation & Tracking Platform</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-train"></i> RailConnect</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#booking">Book Tickets</a></li>
+                    <li><a href="#tracking">Track Train</a></li>
+                    <li><a href="#alerts">Alerts</a></li>
+                    <li><a href="#" id="loginBtn">Login</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Book Your Journey with Confidence</h2>
+                <p>Real-time tracking, instant alerts, and seamless booking experience</p>
+                <div class="hero-buttons">
+                    <a href="#booking" class="btn btn-primary">Book Now</a>
+                    <a href="#tracking" class="btn btn-secondary">Track Train</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Our Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Easy Booking</h3>
+                    <p>Book tickets and select seats with just a few clicks</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Real-time Tracking</h3>
+                    <p>Track your train's location in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Instant Alerts</h3>
+                    <p>Get notified about delays, platform changes, and more</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Pay securely with multiple payment options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking">
+        <div class="container">
+            <h2 class="section-title">Book Your Tickets</h2>
+            <div class="booking-container">
+                <div class="search-form">
+                    <form id="trainSearchForm">
+                        <div class="form-group">
+                            <label for="source">From</label>
+                            <input type="text" id="source" placeholder="Enter source station">
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">To</label>
+                            <input type="text" id="destination" placeholder="Enter destination station">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search Trains</button>
+                    </form>
+                </div>
+                <div class="train-results">
+                    <h3>Available Trains</h3>
+                    <div id="trainList" class="train-list">
+                        <!-- Train results will be displayed here -->
+                        <div class="no-trains">Search for trains to see results</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <section id="tracking" class="tracking">
+        <div class="container">
+            <h2 class="section-title">Track Your Train</h2>
+            <div class="tracking-container">
+                <div class="tracking-form">
+                    <form id="trackingForm">
+                        <div class="form-group">
+                            <label for="trainNumber">Train Number</label>
+                            <input type="text" id="trainNumber" placeholder="Enter train number">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Track Now</button>
+                    </form>
+                </div>
+                <div class="tracking-results">
+                    <div id="trackingInfo" class="tracking-info">
+                        <!-- Tracking information will be displayed here -->
+                        <div class="no-tracking">Enter train number to track</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alerts Section -->
+    <section id="alerts" class="alerts">
+        <div class="container">
+            <h2 class="section-title">Latest Alerts</h2>
+            <div class="alerts-container">
+                <div id="alertsList" class="alerts-list">
+                    <!-- Alerts will be displayed here -->
+                    <div class="no-alerts">No alerts at the moment</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="registerLink">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Enter your password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
+        </div>
+    </div>
+
+    <!-- Seat Selection Modal -->
+    <div id="seatModal" class="modal">
+        <div class="modal-content seat-modal-content">
+            <span class="close">&times;</span>
+            <h2>Select Your Seats</h2>
+            <div class="coach-selection">
+                <label for="coachSelect">Select Coach:</label>
+                <select id="coachSelect">
+                    <option value="S1">S1 - Sleeper</option>
+                    <option value="S2">S2 - Sleeper</option>
+                    <option value="A1">A1 - AC</option>
+                    <option value="A2">A2 - AC</option>
+                </select>
+            </div>
+            <div class="seat-map-container">
+                <div id="seatMap" class="seat-map">
+                    <!-- Seat map will be displayed here -->
+                </div>
+            </div>
+            <div class="selected-seats">
+                <p>Selected Seats: <span id="selectedSeatsText">None</span></p>
+                <p>Total Price: ₹<span id="totalPrice">0</span></p>
+            </div>
+            <button id="proceedToPayment" class="btn btn-primary">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Payment</h2>
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" checked>
+                    <label for="creditCard">Credit Card</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="debitCard" name="paymentMethod" value="debitCard">
+                    <label for="debitCard">Debit Card</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="upi" name="paymentMethod" value="upi">
+                    <label for="upi">UPI</label>
+                </div>
+            </div>
+            <form id="paymentForm">
+                <div id="cardPaymentFields">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Expiry Date</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardName">Name on Card</label>
+                        <input type="text" id="cardName" placeholder="John Doe">
+                    </div>
+                </div>
+                <div id="upiPaymentFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="upiId">UPI ID</label>
+                        <input type="text" id="upiId" placeholder="example@upi">
+                    </div>
+                </div>
+                <div class="payment-summary">
+                    <p>Total Amount: ₹<span id="paymentAmount">0</span></p>
+                </div>
+                <button type="submit" class="btn btn-primary">Pay Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="confirmation-content">
+                <div class="confirmation-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Booking Confirmed!</h2>
+                <p>Your booking has been confirmed. Your booking ID is <span id="bookingId">RAIL123456</span>.</p>
+                <div class="booking-details">
+                    <h3>Booking Details</h3>
+                    <p><strong>Train:</strong> <span id="confirmTrainName">Express 12345</span></p>
+                    <p><strong>From:</strong> <span id="confirmSource">Delhi</span></p>
+                    <p><strong>To:</strong> <span id="confirmDestination">Mumbai</span></p>
+                    <p><strong>Date:</strong> <span id="confirmDate">2023-10-15</span></p>
+                    <p><strong>Seats:</strong> <span id="confirmSeats">A1, A2, A3</span></p>
+                    <p><strong>Total Amount:</strong> ₹<span id="confirmAmount">1500</span></p>
+                </div>
+                <p>A confirmation email has been sent to your registered email address.</p>
+                <button id="downloadTicket" class="btn btn-primary">Download Ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><i class="fas fa-train"></i> RailConnect</h2>
+                    <p>Your trusted railway reservation and tracking platform</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#booking">Book Tickets</a></li>
+                        <li><a href="#tracking">Track Train</a></li>
+                        <li><a href="#alerts">Alerts</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> info@railconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Railway Street, City, Country</p>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 RailConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

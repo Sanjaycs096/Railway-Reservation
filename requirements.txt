@@ -1,4 +1,6 @@
 # Flask and extensions
+<<<<<<< HEAD
+<<<<<<< HEAD
 flask==2.0.3
 flask-cors==3.0.10
 flask-jwt-extended==4.3.1
@@ -6,10 +8,22 @@ flask-session==0.4.0
 
 # MongoDB
 pymongo[srv]==4.0.1
+=======
+flask==2.0.1
+=======
+flask==2.0.3
+>>>>>>> 0751cc5 (Fix: Pin Flask and Werkzeug versions for Vercel compatibility)
+flask-cors==3.0.10
+flask-jwt-extended==4.3.1
+
+# MongoDB
+pymongo==4.0.1
+>>>>>>> 3835eb4 (Initial commit)
 
 # Environment variables
 python-dotenv==0.19.1
 
+<<<<<<< HEAD
 # Security
 bcrypt==4.0.1
 pyjwt==2.6.0
@@ -30,7 +44,20 @@ werkzeug==2.0.3
 
 # Groq AI API
 groq==0.4.1
+=======
+# Utilities
+bson==0.5.10
+requests==2.26.0
+python-dateutil==2.8.2
 
+# Production server
+gunicorn==20.1.0
+<<<<<<< HEAD
+>>>>>>> 3835eb4 (Initial commit)
+
+=======
+werkzeug==2.0.3
+>>>>>>> 0751cc5 (Fix: Pin Flask and Werkzeug versions for Vercel compatibility)
 # For deployment
 vercel==0.2.1
 
